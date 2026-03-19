@@ -1,0 +1,9 @@
+{
+  "name": "技术标智算AI助手(内测)",
+  "description": "专业的技术标书 AI 助手，支持多模型接入与知识库检索。",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

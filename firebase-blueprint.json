@@ -1,0 +1,50 @@
+{
+  "entities": {
+    "BidDocument": {
+      "title": "Bid Document",
+      "description": "A document uploaded to the knowledge base for reference.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique ID of the document" },
+        "title": { "type": "string", "description": "Title of the document" },
+        "content": { "type": "string", "description": "Extracted text content of the document" },
+        "uploadDate": { "type": "string", "format": "date-time", "description": "When the document was uploaded" },
+        "fileType": { "type": "string", "description": "Type of the file (e.g., pdf, docx, txt)" },
+        "userId": { "type": "string", "description": "Owner of the document" }
+      },
+      "required": ["id", "title", "content", "uploadDate", "userId"]
+    },
+    "BidDraft": {
+      "title": "Bid Draft",
+      "description": "A draft of a new bid being written.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique ID of the draft" },
+        "title": { "type": "string", "description": "Title of the new bid draft" },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "content": { "type": "string" }
+            }
+          }
+        },
+        "lastModified": { "type": "string", "format": "date-time" },
+        "userId": { "type": "string" }
+      },
+      "required": ["id", "title", "userId"]
+    }
+  },
+  "firestore": {
+    "bidDocuments": {
+      "schema": "BidDocument",
+      "description": "Collection of uploaded bid documents for the knowledge base."
+    },
+    "bidDrafts": {
+      "schema": "BidDraft",
+      "description": "Collection of bid drafts being worked on by users."
+    }
+  }
+}

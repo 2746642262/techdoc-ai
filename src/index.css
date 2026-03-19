@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased bg-zinc-50 text-zinc-900 selection:bg-indigo-100 transition-colors duration-300;
+  }
+  
+  .dark body {
+    @apply bg-zinc-950 text-zinc-100 selection:bg-indigo-900/40;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-200 dark:bg-zinc-800 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors;
+}
+
+/* Document Content Styling */
+.doc-content-html {
+  @apply leading-relaxed text-zinc-700 dark:text-zinc-300;
+}
+
+.doc-content-html p {
+  @apply mb-6;
+}
+
+.doc-content-html h1, .doc-content-html h2, .doc-content-html h3 {
+  @apply text-zinc-900 dark:text-zinc-100 mt-12 mb-6 font-serif italic;
+}
+
+.doc-content-html strong {
+  @apply text-zinc-900 dark:text-zinc-100 font-semibold;
+}
+
+/* AI Source Tags */
+.ai-source-tag {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold rounded-md border border-indigo-100 dark:border-indigo-800/50 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 transition-all cursor-pointer no-underline align-middle mx-0.5;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Search Result Highlighting */
+.highlight-flash {
+  background-color: rgba(254, 240, 138, 0.4) !important; /* Brighter yellow */
+  border-radius: 2px !important;
+  display: inline !important;
+  position: relative !important;
+  z-index: 10 !important;
+  transition: all 0.2s ease !important;
+  box-decoration-break: clone !important;
+  -webkit-box-decoration-break: clone !important;
+  color: #000 !important; /* Ensure text is readable */
+}
+
+.highlight-active {
+  background-color: rgba(254, 240, 138, 0.8) !important;
+  z-index: 50 !important;
+  color: #000 !important;
+}
+
+.dark .highlight-flash {
+  background-color: rgba(234, 179, 8, 0.3) !important;
+  color: #fff !important;
+}
+
+.dark .highlight-active {
+  background-color: rgba(234, 179, 8, 0.6) !important;
+}
+
+/* Breathing Light Animations */
+@keyframes breathe-green {
+  0%, 100% { opacity: 1; box-shadow: 0 0 5px rgba(34, 197, 94, 0.5); }
+  50% { opacity: 0.4; box-shadow: 0 0 15px rgba(34, 197, 94, 0.8); }
+}
+
+@keyframes blink-red {
+  0%, 100% { opacity: 1; background-color: #ef4444; box-shadow: 0 0 10px rgba(239, 68, 68, 0.8); }
+  50% { opacity: 0.2; background-color: #f87171; box-shadow: 0 0 2px rgba(239, 68, 68, 0.2); }
+}
+
+.status-light-green-solid {
+  background-color: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.status-light-green-blink {
+  background-color: #22c55e;
+  animation: breathe-green 1.5s ease-in-out infinite;
+}
+
+.status-light-red-blink {
+  animation: blink-red 0.3s ease-in-out infinite;
+}
+
+.status-light-red-solid {
+  background-color: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+}
+
+/* Logo visibility in dark mode */
+.dark .logo-glow {
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+}
+
+/* Markdown Table Styling */
+.prose table {
+  @apply w-full border-collapse my-8 text-sm;
+}
+
+.prose th {
+  @apply bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 p-3 text-left font-serif italic font-bold text-zinc-900 dark:text-zinc-100;
+}
+
+.prose td {
+  @apply border border-zinc-100 dark:border-zinc-800 p-3 text-zinc-600 dark:text-zinc-400;
+}
+
+.prose tr:nth-child(even) {
+  @apply bg-zinc-50/50 dark:bg-zinc-900/20;
+}
+
+/* Excel Style Table */
+.excel-sheet table {
+  @apply w-full border-collapse border border-zinc-200 dark:border-zinc-800 text-xs my-4;
+}
+
+.excel-sheet th, .excel-sheet td {
+  @apply border border-zinc-200 dark:border-zinc-800 p-2 text-left;
+}
+
+.excel-sheet th {
+  @apply bg-zinc-50 dark:bg-zinc-900 font-bold;
+}
+
+/* Thinking Pulse */
+@keyframes thinking-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.thinking-dot {
+  @apply w-1.5 h-1.5 bg-zinc-400 dark:bg-zinc-600 rounded-full;
+  animation: thinking-pulse 1.4s infinite ease-in-out;
+}
+
+.thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dot:nth-child(3) { animation-delay: 0.4s; }
